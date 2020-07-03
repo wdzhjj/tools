@@ -1,4 +1,5 @@
 <script> 
+//获取当前url参数 
 	 function getUrlParam(paraName, defaultValue) {
 				defaultValue = defaultValue != undefined ? defaultValue : '';
 				var url = document.location.toString();

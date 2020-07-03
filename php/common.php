@@ -467,6 +467,12 @@
         $replace = array("", "", "", "", "", "", "", "", "", "", "", "");
         return str_replace($search, $replace, $str);
     }
+	
+		/* 替换特殊字符 */
+	public function replace_specialChar123($strParam){
+		$regex = "/\'|\ |\~|\!|\@|\#|\%|\^|\&|\*|\(|\)|\+|\{|\}|\<|\>|\?|\[|\]|\,|\，|\;|\"|\`|\|/";
+		return preg_replace($regex,"",$strParam);
+	}
 
     /**
      * 提取手机号
@@ -483,7 +489,37 @@
         return '';
     }
 
+    /**
+     * 获取上传类型的文件后缀
+     * @param unknown $fileType
+     * @return Ambigous <string, multitype:string >
+     */
+    public static function GetFileType($fileType)
+    {
+    	$arr = array(
+    			'file' => array('excel','xls','doc','docx','ppt'),
+    			'img' => array('jpg','png'),
+    			'music' => array('mp3'),
+    			'video' => array('mp4'),
+    	);
 
+    	$res = isset($arr[$fileType]) ? $arr[$fileType] : '';
+    	return $res;
+    }
+	
+    /**
+     * 随机验证码
+     * @param number $length
+     * @return string
+     */
+    public static function CreateNonceStr($length = 32) {
+    	$chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    	$str = '';
+    	for ($i = 0; $i < $length; $i++) {
+    		$str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+    	}
+    	return $str;
+    }
 
 
 
